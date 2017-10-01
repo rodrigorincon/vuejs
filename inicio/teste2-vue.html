@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+	<div id="app">
+		<h3>function: </h3>
+		<p>Reversed message: "{{ reverseMessage() }}"</p><br>
+		<button @click="reverseMessage()">executar function</button>
+
+		<h3>compute: </h3>
+		<p>Reversed message: "{{ reversed }}"</p>
+		<button @click="reversed">executar compute</button>
+
+		<h3>filtro: </h3>
+		<p>Reversed message: "{{ message | trocar }}"</p>
+		<button @click="reversed">executar compute</button>
+
+		<h3>Watcher: </h3>
+		<p>
+		    digite qualquer merda:
+		    <input v-model="question">
+		</p>
+		<p>{{ answer }}</p>
+	</div>
+
+
+
+
+	<script type="text/javascript">
+		
+		var app = new Vue({
+		  el: '#app',
+		  data: {
+		  	message: "Alo mundo",
+		  	question: '',
+			answer: 'I cannot give you an answer until you ask a question!'
+		  },
+		  //armazena o resultado em cache e só re-executa se alguns dos parametros mudar
+		  //usar quando a funcao for pesada e consumir muito tempo ou processamento E apenas PARA GET (não alterar as variaveis)
+		  computed: {
+		  	reversed(){
+		  		alert("passei no computed");
+		  		return this.message.split('').reverse().join('')
+		  	}
+		  },
+		  //use para alterar o valor de algum atributo (SET)
+		  methods: {
+  			reverseMessage() {
+		  		alert("passei no method");
+    			return this.message.split('').reverse().join('')
+  			}
+		  },
+		  //use pra filtrar coisas no front, NUNCA pra atualizar variaveis (principalmente arrays e texto)
+		  filters: {
+			trocar(value) {
+				return value.split('').reverse().join('')
+			}
+		  },
+		  //use quando tiver chamadas assincronas (ajax/leitura de arquivos) ou operacoes muito custosas q alterem dados
+		  watch: {
+		    question: function (newQuestion) {
+		      this.answer = 'Waiting for you to stop typing...'
+		      var self = this
+		      setTimeout(function() {
+		      	self.answer = "pergunta feita"
+		      }, 500);
+		    }
+		  }
+		})
+	</script>
+</body>
+</html>

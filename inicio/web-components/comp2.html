@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://unpkg.com/vue"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.css">
+</head>
+<body>
+
+	<div id="root">
+		<modal v-show="show_modal" @close="show_modal=false"></modal> <!-- @close EH UM EVENTO CRIADO POR MIM E NAO PRECISA DESCREVER ELE, SOH LANCA-LO (O CORPO DA TAG MODAL PRECISA TER ALGUM CANTO EM Q LANCA ELE) -->
+
+		<button @click="show_modal=true">SHOW MODAL</button>
+
+		<cupon @preenchido="onCuponApplied"></cupon>
+		<h1 v-if="cuponApplied">CUPON USADO</h1>
+
+		<cupon2></cupon2>
+	</div>
+
+
+	<script src="comp2.js"></script>
+</body>
+</html>

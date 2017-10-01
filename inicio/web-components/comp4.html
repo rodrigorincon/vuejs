@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://unpkg.com/vue"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.css">
+</head>
+<body>
+
+	<div id="root" class="container">
+		<modal v-show="show_modal" @close="show_modal=false">
+			<template slot="header"> <!-- trecho de codigo html a ser inserido no component -->
+				Meu título
+			</template>
+			
+			sbvjkgvbergbrjkverbfvjerkvberjkbvjefkbjkvgberjkg <!-- o que estiver solto será alocado pelo <slot> vazio -->
+			
+			<template slot="footer">
+				<a class="button is-primary" @click="show_modal=false">Save changes</a>
+				<a class="button" @click="show_modal=false">Cancel</a>
+			</template>
+		</modal>
+
+		<button @click="show_modal=true">SHOW MODAL</button>
+	</div>
+
+	<script src="comp4.js"></script>
+</body>
+</html>

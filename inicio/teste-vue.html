@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://unpkg.com/vue"></script>
+	<style type="text/css">
+		.real-class { color: red; }
+		.back-red { background: red; }
+	</style>
+</head>
+<body>
+	<div id="app">
+	  <ul>
+	  	<li v-for="name in names" v-text="name"></li>
+	  </ul>
+	  <input type="text" v-model="new_name">
+	  <button @click="addName">ADD</button>
+	  <br><br>
+
+	  <p v-if="isVisible()">olha eu aqui</p><br>
+	  <button :class="{ 'back-red': bool }" @click="toggleBool">TROCAR</button>
+	  <br><br>
+
+	  <h2 :class="cabecalho.minha_classe" :title="cabecalho.meu_titulo" >bla bla bla</h2>
+	  <button :disabled="bool">nada acontece ao clicar aqui</button>
+	</div>
+
+
+
+
+	<script type="text/javascript">
+		
+		var app = new Vue({
+		  el: '#app',
+		  data: {
+		  	new_name: "",
+		    names: ['eu', "tu", "ele"],
+		    bool: true,
+		    cabecalho: {
+			    minha_classe: "real-class", 
+			    meu_titulo: "texto texto texto"
+		    }
+		  },
+		  methods: {
+		  	addName(){
+		  		this.names.push(this.new_name)
+		  		this.new_name = ""
+		  	},
+		  	toggleBool(){
+		  		this.bool = !this.bool
+		  	},
+		  	isVisible(){
+		  		return this.bool
+		  	}
+		  }
+		})
+
+	</script>
+</body>
+</html>

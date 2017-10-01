@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://unpkg.com/vue"></script>
+	<style type="text/css">
+		.real-class { color: red; }
+		.back-red { background: red; }
+	</style>
+</head>
+<body>
+	<div id="app">
+	  <h3>Todos</h3><br>
+	  <p>{{numbers}}</p>
+	  <br><br>
+
+	  <h3>filtrado por pares</h3><br>
+	  <p>{{numbers | pares}}</p>
+
+	  <h3>filtrado por pares e menores q 5</h3><br>
+	  <p>{{numbers | pares | menorQue(5) }}</p>
+
+	  <h3>FILTRO GLOBAL</h3><br>
+	  <p>{{numbers | entre(2,6) }}</p>
+
+	 
+	</div>
+
+
+	<script type="text/javascript">
+
+		Vue.filter('entre', function (value, begin, end) {
+		  return value.filter(function(val){return val>=begin && val<= end})
+		})
+		
+		var app = new Vue({
+		  el: '#app',
+		  data: {
+		  	numbers: [1,2,3,4,5,6,7,8,9,0]
+		  },
+		  filters: {
+			pares(value) {
+				return value.filter(function(val){return val%2==0})
+			},
+			menorQue(value, maximo){
+				return value.filter(function(val){return val<maximo})
+			}
+		  }
+		})
+
+	</script>
+</body>
+</html>

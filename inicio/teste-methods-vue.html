@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://unpkg.com/vue"></script>
+	<style type="text/css">
+		.real-class { color: red; }
+		.back-red { background: red; }
+	</style>
+</head>
+<body>
+	<div id="app">
+	  <input type="text" v-model="new_name">
+	  <button @click="funcao1">ADD</button>
+	  <p>{{old_name}}</p>
+	  <p>{{var_nada_a_ver}}</p>
+	  <br><br>
+
+	</div>
+
+
+
+
+	<script type="text/javascript">
+		
+		var app = new Vue({
+		  el: '#app',
+		  data: {
+		  	new_name: "",
+		  	old_name: "alo",
+		  	var_nada_a_ver: 0
+		  },
+		  methods: {
+		  	funcao1(){
+		  		alert("passei na 1");
+		  		this.old_name = this.new_name
+		  		this.new_name = ""
+		  		this.var_nada_a_ver += 1
+		  	},
+		  	funcao2(){
+		  		alert("passei na 2");
+		  		var_nada_a_ver += 1
+		  	},
+		  	funcao3(){
+		  		alert("passei na 3");
+		  	}
+		  }
+		})
+
+	</script>
+</body>
+</html>
