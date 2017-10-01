@@ -2,9 +2,9 @@
   "name": "vuejs-poster-shop",
   "version": "1.0.0",
   "description": "Ultimate Vue.js Developers Course",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon ./index.js --ignore node_modules/ -e js,html,css"
+    "start": "nodemon ./server.js --ignore node_modules/ -e js,html,css"
   },
   "author": "Anthony Gore <info@getjsdojo.com>",
   "repository": {
