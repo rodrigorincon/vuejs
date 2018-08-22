@@ -37,7 +37,7 @@
             <div class="product" v-for="item in items" :key="item.id">
                 <div>
                     <div class="product-image">
-                        <img :src="item.link">
+                        <img :src="item.link"> <!-- colocar src="{{item.link}}" não funfa pq o html e o vue ñ vão se conversar se vc não falar q o attr src deve ouvir o vue (bind) -->
                     </div>
                 </div>
                 <div>

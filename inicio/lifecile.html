@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://unpkg.com/vue"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+	<div id="app1">
+	  SOU UMA DIV COMPLETA COM OBJ VUE ASSOCIADO
+	</div>
+
+	<button onclick="criarDiv()">Criar o outro objeto vue</button>
+
+
+	<script type="text/javascript">
+		
+		var app1 = new Vue({
+		  el: '#app1',
+		  created: function() {
+		  	alert("objeto vue da div APP1 criado")
+		  },
+		  mounted: function(){
+		  	alert("DOM do objeto vue APP1 montado e renderizado")
+		  }
+		})
+
+		var app2 = new Vue({
+		  //el: '#app2',  // se tiver o atributo el vai executar o mounted, msm não existindo a div
+		  created: function() {
+		  	alert("objeto vue da div APP2 criado")
+		  },
+		  mounted: function(){
+		  	alert("DOM do objeto vue APP2 montado e renderizado")
+		  }
+		})
+
+		function criarDiv(){
+			$("body").append("<div id='app2'>SOU A DIV CRIADA EM TEMPO DE EXECUCAO COM OBJETO VUE ASSOCIADO</div>")
+			app2.$mount( "#app2" )
+		}
+
+	</script>
+</body>
+</html>
