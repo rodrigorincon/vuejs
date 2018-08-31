@@ -20,8 +20,8 @@
     </div>
     <div id="overview">
         <div class="main">
-            <movie-list></movie-list>
-            <movie-filter></movie-filter>
+            <movie-list :time_filter="time_filter_selected" :genre_filter="genre_filter_selected"></movie-list>
+            <movie-filter @filter="filter"></movie-filter>
         </div>
     </div>
 </div>
