@@ -1,13 +1,16 @@
 <template>
 	
 	<div id="movie-list">
-		<movieinfo v-for="movie in filteredMovies" :filme="movie" ></movieinfo>
+		<movie-info v-for="movie in filteredMovies" :filme="movie" ></movie-info>
+		<!-- o vue transforma o nome do arquivo em camel-case automaticamente em uma tag snake-case,
+		entao eh preciso mudar a tag de movieinfo para movie-info. Para permanecer como movieinfo o nome do arquivo precisaria ser Movieinfo sem o I maiusculo  -->
    	</div>
 
 </template>
 
 <script>
 	import generos from '../util/genres'
+	import MovieInfo from './MovieInfo.vue'
 
 	export default {
 		props: ['time_filter', 'genre_filter'],
@@ -30,16 +33,7 @@
 		    }
 	  	},
 		components: {
-			'movieinfo': {
-				props: {
-					filme: {
-					  type: Object
-					}
-				},
-				template: `<p>
-							{{filme.title}}
-						   </p><br>`
-			}
+			MovieInfo
 		}
 	}
 </script>
