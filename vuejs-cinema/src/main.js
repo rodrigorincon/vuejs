@@ -4,6 +4,8 @@ import './style.scss'
 
 import generos from './util/genres'
 
+import MovieList from './components/MovieList.vue'
+
 new Vue({
   el: "#app",
   data(){
@@ -27,42 +29,7 @@ new Vue({
     }
   },
   components: {
-  	'movie-list': {
-      props: ['time_filter', 'genre_filter'],
-  		template: `<div id="movie-list">
-  					<movieinfo v-for="movie in filteredMovies" :filme="movie" ></movieinfo>
-  				   </div>`,
-  		data(){ // OU data: function(){
-  			return {
-  				movies: [
-  					{title: "Pulp Fiction", genre: generos.CRIME},
-  					{title: "Home ALono", genre: generos.COMEDY},
-  					{title: "Austin Powers", genre: generos.COMEDY}
-  				]
-  			}
-  		},
-      computed:{
-        filteredMovies(){
-          if(!this.genre_filter.length){
-            return this.movies
-          }else{
-            return this.movies.filter(movie => this.genre_filter.find(genero => movie.genre === genero) )
-          }
-        }
-      },
-  		components: {
-  			'movieinfo': {
-		  		props: {
-            filme: {
-              type: Object
-            }
-          },
-          template: `<p>
-		  					{{filme.title}}
-		  				   </p><br>`
-	  		}
-  		}
-  	},
+  	MovieList,
   	'movie-filter': {
   		data(){
   			return{
