@@ -5,6 +5,7 @@ import MovieList from './components/MovieList.vue'
 import MovieFilter from './components/MovieFilter.vue'
 
 import axios from 'axios'
+import moment from 'moment-timezone'
 
 new Vue({
   el: "#app",
@@ -12,7 +13,11 @@ new Vue({
     return{
       time_filter_selected: [],
       genre_filter_selected: [],
-      movies_served: []
+      movies_served: [],
+      filterDay: {
+        type: String,
+        default: moment().format('YYYY-MM-DD')
+      }
     }
   },
   methods: {

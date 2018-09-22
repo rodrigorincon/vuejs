@@ -15,7 +15,7 @@ function generateSessions(id) {
   let nums = id.replace('tt', '').split('').map(item => {
     let num = parseInt(item);
     if (num === 0) { num = 1; }
-    if (num > 6) { num = num - 2; }
+    if (num > 6) { num = num - 1; }
     return num;
   });
   nums.splice(nums[3], 0, nums[0]);
@@ -24,7 +24,7 @@ function generateSessions(id) {
     let date = moment().startOf('day').add(index, 'days');
     for (let i = 0; i < num; i++) {
       let pos = index + i <= nums.length ? index + i : index + i - nums.length;
-      let hours = nums[pos] + 12;
+      let hours = nums[pos] + 14;
       let mins = nums[pos] < 2.5 ? 0 : nums[pos] < 5 ? 15 : nums[pos] < 7.5 ? 30 : 45;
       sessions.push({
         id: `${id}_${i}`,
