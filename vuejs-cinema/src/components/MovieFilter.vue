@@ -4,11 +4,11 @@
     <h2>Filtros</h2>
     <h3>Por horário</h3>
     <div class="filter-group">
-      <check-filter v-for="periodo in periodos" category="time" :title="periodo" @filter="sendFilterToRoot"></check-filter>
+      <check-filter v-for="periodo in periodos" category="time" :title="periodo"></check-filter>
     </div>
     <h3>Por gênero</h3>
     <div class="filter-group">
-      <check-filter v-for="genre in generos" category="genre" :title="genre" @filter="sendFilterToRoot"></check-filter>
+      <check-filter v-for="genre in generos" category="genre" :title="genre"></check-filter>
     </div>
   </div>
 
@@ -29,11 +29,6 @@
     },
     components: {
       CheckFilter
-    },
-    methods:{
-      sendFilterToRoot(type, checked, name){
-        this.$emit('filter', type, checked, name)
-      }
     }
   }
 </script>

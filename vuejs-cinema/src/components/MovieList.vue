@@ -7,7 +7,7 @@
 			entao eh preciso mudar a tag de movieinfo para movie-info. Para permanecer como movieinfo o nome do arquivo precisaria ser Movieinfo sem o I maiusculo  -->
 		</div>
 		<div v-else-if="movies.length" class="no-results">
-			Nenhum resultado.
+			Nenhum resultado para os filtros selecionados.
 		</div>
 		<div v-else> 
 			<!-- melhor por o v-else q um v-cloak na div pai pq com v-cloak nao mostra nada ate carregar tudo -->
@@ -18,8 +18,8 @@
 </template>
 
 <script>
-	import generos from '../util/genres'
 	import MovieInfo from './MovieInfo.vue'
+	import generos from '../util/genres'
 	import periodos from '../util/times'
 	import moment from 'moment-timezone'
 

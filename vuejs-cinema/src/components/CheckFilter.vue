@@ -10,6 +10,8 @@
 </template>
 
 <script>
+  import {EventBus} from '../util/event-bus';
+  
 	export default {
 		props: ["title", "category"],
         data(){
@@ -20,7 +22,7 @@
         methods: {
           clickFilter(){
             this.checked = !this.checked
-            this.$emit('filter', this.category, this.checked, this.title)
+            EventBus.$emit('filter', this.category, this.checked, this.title)
           }
         }
 	}

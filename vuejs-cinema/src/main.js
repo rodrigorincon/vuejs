@@ -6,6 +6,7 @@ import MovieFilter from './components/MovieFilter.vue'
 
 import axios from 'axios'
 import moment from 'moment-timezone'
+import {EventBus} from './util/event-bus';
 
 new Vue({
   el: "#app",
@@ -52,5 +53,6 @@ new Vue({
     axios.get("/api").then( (response)  =>  {
       this.movies_served = response.data
     })
+    EventBus.$on('filter', this.filter)
   }
 })
