@@ -4,12 +4,15 @@ import './style.scss'
 import MovieList from './components/MovieList.vue'
 import MovieFilter from './components/MovieFilter.vue'
 
+import axios from 'axios'
+
 new Vue({
   el: "#app",
   data(){
     return{
       time_filter_selected: [],
-      genre_filter_selected: []
+      genre_filter_selected: [],
+      movies_served: []
     }
   },
   methods: {
@@ -29,5 +32,10 @@ new Vue({
   components: {
   	MovieList,
     MovieFilter
+  },
+  created(){
+    axios.get("/api").then( (response)  =>  {
+      this.movies_served = response.data
+    })
   }
 })

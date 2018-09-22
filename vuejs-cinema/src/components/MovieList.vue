@@ -13,14 +13,9 @@
 	import MovieInfo from './MovieInfo.vue'
 
 	export default {
-		props: ['time_filter', 'genre_filter'],
+		props: ['time_filter', 'genre_filter', 'movies'],
 		data(){ // OU data: function()
 			return {
-				movies: [
-					{title: "Pulp Fiction", genre: generos.CRIME},
-					{title: "Home ALono", genre: generos.COMEDY},
-					{title: "Austin Powers", genre: generos.COMEDY}
-				]
 			}
 		},
 	 	computed:{
@@ -28,7 +23,7 @@
 		      if(!this.genre_filter.length){
 		        return this.movies
 		      }else{
-		        return this.movies.filter(movie => this.genre_filter.find(genero => movie.genre === genero) )
+		        return this.movies.filter(movie => this.genre_filter.find(genero => movie.movie.Genre.split(",").map(genre => genre.trim() ).includes(genero) ) )
 		      }
 		    }
 	  	},
