@@ -45,7 +45,7 @@
 
 				var myValidSessions = todaySessions
 				if(this.time_filter.length === 1 ){
-		          myValidSessions = todaySessions.filter(session => this.verifySessionTime(session) )
+		          myValidSessions = todaySessions.filter(this.verifySessionTime )
 		        }
 				return myValidSessions
 			},
