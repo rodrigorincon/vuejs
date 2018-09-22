@@ -27,6 +27,16 @@ new Vue({
           }
         }
       }
+      else if(type == "time"){
+        if(checked){
+          this.time_filter_selected.push(name)
+        }else{
+          var index = this.time_filter_selected.indexOf(name)
+          if(index > -1){
+            this.time_filter_selected.splice(index, 1)
+          }
+        }
+      }
     }
   },
   components: {

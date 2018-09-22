@@ -11,7 +11,7 @@
 
 <script>
 	export default {
-		props: ["title"],
+		props: ["title", "category"],
         data(){
           return{
             checked: false
@@ -20,7 +20,7 @@
         methods: {
           clickFilter(){
             this.checked = !this.checked
-            this.$emit('filter', 'genre', this.checked, this.title)
+            this.$emit('filter', this.category, this.checked, this.title)
           }
         }
 	}
