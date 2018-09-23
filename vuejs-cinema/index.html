@@ -18,12 +18,7 @@
         <img src="/public/logo.png">
         <h1>Vue.js Cinema</h1>
     </div>
-    <div id="overview">
-        <div class="main">
-            <movie-list :time_filter="time_filter_selected" :genre_filter="genre_filter_selected" :movies="movies_served"></movie-list>
-            <movie-filter></movie-filter>
-        </div>
-    </div>
+    <overview :movies="movies_served"></overview>
 </div>
 <script src="/dist/build.js"></script>
 </body>

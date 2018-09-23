@@ -1,58 +1,25 @@
 import Vue from 'vue';
 import './style.scss'
 
-import MovieList from './components/MovieList.vue'
-import MovieFilter from './components/MovieFilter.vue'
+import Overview from './components/Overview.vue'
 
 import axios from 'axios'
 import moment from 'moment-timezone'
-import {EventBus} from './util/event-bus';
 
 new Vue({
   el: "#app",
   data(){
     return{
-      time_filter_selected: [],
-      genre_filter_selected: [],
       movies_served: [],
-      filterDay: {
-        type: String,
-        default: moment().format('YYYY-MM-DD')
-      }
-    }
-  },
-  methods: {
-    filter(type, checked, name){
-      if(type == "genre"){
-        if(checked){
-          this.genre_filter_selected.push(name)
-        }else{
-          var index = this.genre_filter_selected.indexOf(name)
-          if(index > -1){
-            this.genre_filter_selected.splice(index, 1)
-          }
-        }
-      }
-      else if(type == "time"){
-        if(checked){
-          this.time_filter_selected.push(name)
-        }else{
-          var index = this.time_filter_selected.indexOf(name)
-          if(index > -1){
-            this.time_filter_selected.splice(index, 1)
-          }
-        }
-      }
+      filterDay: moment().format('YYYY-MM-DD')
     }
   },
   components: {
-  	MovieList,
-    MovieFilter
+    Overview
   },
   created(){
     axios.get("/api").then( (response)  =>  {
       this.movies_served = response.data
     })
-    EventBus.$on('filter', this.filter)
   }
 })
