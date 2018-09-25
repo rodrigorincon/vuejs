@@ -15,10 +15,16 @@
 <body>
 <div id="app">
     <div id="title">
-        <img src="/public/logo.png">
-        <h1>Vue.js Cinema</h1>
+        <router-link :to="{ name: 'home'}">
+            <img src="/public/logo.png">
+            <h1>Vue.js Cinema</h1>
+        </router-link>
     </div>
-    <overview :movies="movies_served"></overview>
+    <!-- TUDO FORA DESSA TAG ROUTER-VUE APARECE EM TODAS AS TELAS, COMO UM LAYOUT PADRÃO
+        TROCAR DE TELA SÓ MUDA QUAL ROUTER-VIEW VC TA, TROCANDO UMA TAG OVERVIEW POR OUTRA DETAIL OU QQ OUTRA
+        POR ISSO O RESTO DO HTML APARECE SEMPRE
+     -->
+    <router-view :movies="movies_served"></router-view>
 </div>
 <script src="/dist/build.js"></script>
 </body>

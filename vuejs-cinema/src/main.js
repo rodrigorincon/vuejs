@@ -1,10 +1,12 @@
 import Vue from 'vue';
 import './style.scss'
 
-import Overview from './components/Overview.vue'
-
 import axios from 'axios'
 import moment from 'moment-timezone'
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
+
+import routes from './routes.js'
 
 new Vue({
   el: "#app",
@@ -14,9 +16,7 @@ new Vue({
       filterDay: moment().format('YYYY-MM-DD')
     }
   },
-  components: {
-    Overview
-  },
+  router: new VueRouter({routes}),
   created(){
     axios.get("/api").then( (response)  =>  {
       this.movies_served = response.data

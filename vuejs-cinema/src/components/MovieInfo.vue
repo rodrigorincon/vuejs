@@ -7,7 +7,9 @@
 
 		<div class="movie-col-right">
 			<div class="movie-title">
-				<h2>{{filme.Title}}</h2>
+				<router-link :to="{ name: 'movie'}">
+					<h2>{{filme.Title}}</h2>
+				</router-link>
 				<span class="movie-rating">{{filme.Rated}}</span>
 			</div>
 			<div class="movie-sessions">
