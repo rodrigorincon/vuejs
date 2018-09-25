@@ -7,16 +7,14 @@
 
 		<div class="movie-col-right">
 			<div class="movie-title">
-				<router-link :to="{ name: 'movie'}">
+				<router-link :to="{ name: 'movie', params: {id: filme.imdbID} }">
 					<h2>{{filme.Title}}</h2>
 				</router-link>
 				<span class="movie-rating">{{filme.Rated}}</span>
 			</div>
-			<div class="movie-sessions">
-				<div v-for="session in sessoes" class="session-time-wrapper">
-					<div class="session-time">{{ formatSessionTime(session.time) }}</div>
-				</div>
-			</div>
+			
+			<slot></slot>
+			
 		</div>
 
 	</div>
@@ -24,20 +22,10 @@
 </template>
 
 <script>
-	import moment from 'moment-timezone'
-
 	export default {
 		props: {
 			filme: {
 			  type: Object
-			},
-			sessoes: {
-			  type: Array
-			}
-		},
-		methods: {
-			formatSessionTime(timeRaw){
-				return moment(timeRaw).format('HH:mm')
 			}
 		}
 	}

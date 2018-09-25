@@ -2,7 +2,13 @@
 	
 	<div id="movie-list">
 		<div v-if="filteredMovies.length">
-			<movie-info v-for="movie in filteredMovies" :filme="movie.movie" :sessoes="filteredSessions(movie)" ></movie-info>
+			<movie-info v-for="movie in filteredMovies" :filme="movie.movie" >
+				<div class="movie-sessions">
+					<div v-for="session in filteredSessions(movie)" class="session-time-wrapper">
+						<div class="session-time">{{ formatSessionTime(session.time) }}</div>
+					</div>
+				</div>
+			</movie-info>
 			<!-- o vue transforma o nome do arquivo em camel-case automaticamente em uma tag snake-case,
 			entao eh preciso mudar a tag de movieinfo para movie-info. Para permanecer como movieinfo o nome do arquivo precisaria ser Movieinfo sem o I maiusculo  -->
 		</div>
@@ -48,6 +54,9 @@
 		          myValidSessions = todaySessions.filter(this.verifySessionTime )
 		        }
 				return myValidSessions
+			},
+			formatSessionTime(timeRaw){
+				return moment(timeRaw).format('HH:mm')
 			},
 
 			filterMovieByGenres(listMovies){
