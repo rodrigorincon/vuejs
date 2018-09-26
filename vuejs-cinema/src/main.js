@@ -8,6 +8,8 @@ Vue.use(VueRouter)
 
 import routes from './routes.js'
 import {EventBus} from './util/event-bus';
+import Tooltip from './util/tooltip';
+Vue.use(Tooltip)
 
 new Vue({
   el: "#app",

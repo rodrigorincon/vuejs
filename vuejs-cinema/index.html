@@ -24,7 +24,9 @@
         TROCAR DE TELA SÓ MUDA QUAL ROUTER-VIEW VC TA, TROCANDO UMA TAG OVERVIEW POR OUTRA DETAIL OU QQ OUTRA
         POR ISSO O RESTO DO HTML APARECE SEMPRE
      -->
-    <router-view :movies="movies_served"></router-view>
+    <keep-alive> <!-- essa tag diz pro vue nao destruir os objetos e componentes dentro dela, garantindo q msm mudando de tela e navegando informações como um formulario meio preenchido ou campos selecionados continuarao assim (importante lembrar q como a tag impede o vue de destruir os objetos e recriar quando for voltar pra essa tela, o espaco ocupado em memoria vai ser grande, alem de q certos metodos do cilco de vida nunca mais serao chamados, como created e mounted) -->
+        <router-view :movies="movies_served"></router-view>
+    </keep-alive>
 </div>
 <script src="/dist/build.js"></script>
 </body>

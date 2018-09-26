@@ -4,8 +4,10 @@
 		<div v-if="filteredMovies.length">
 			<movie-info v-for="movie in filteredMovies" :filme="movie.movie" >
 				<div class="movie-sessions">
-					<div v-for="session in filteredSessions(movie)" class="session-time-wrapper">
-						<div class="session-time" :title="session.seats">{{ formatSessionTime(session.time) }}</div>
+					<div v-for="session in filteredSessions(movie)" class="session-time-wrapper tooltip-wrapper" v-tooltip="{seats: session.seats}" :key="session.id">
+					<!-- o atributo key eh importante no v-for pq por padrao o vue nao move os objetos d elugar no array ao ter alguma mudança, ele altera seus valores pra aparecer igual aoq  queremos, sem reordenar os obj. Isso da uma grande velocidade, porem se ha obj filhos tb pode haver inconsistencias, pois o obj filho nao eh alterado, ai usando o key a gente forca o vue a reordenar e a rastear q objeto eh de onde -->
+						<div class="session-time">{{ formatSessionTime(session.time) }}</div>
+						<!-- A diretiva tooltip vai inserir um span aqui -->
 					</div>
 				</div>
 			</movie-info>
