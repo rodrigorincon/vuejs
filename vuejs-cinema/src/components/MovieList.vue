@@ -5,7 +5,7 @@
 			<movie-info v-for="movie in filteredMovies" :filme="movie.movie" >
 				<div class="movie-sessions">
 					<div v-for="session in filteredSessions(movie)" class="session-time-wrapper">
-						<div class="session-time">{{ formatSessionTime(session.time) }}</div>
+						<div class="session-time" :title="session.seats">{{ formatSessionTime(session.time) }}</div>
 					</div>
 				</div>
 			</movie-info>

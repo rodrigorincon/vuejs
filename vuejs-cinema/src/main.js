@@ -7,13 +7,14 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import routes from './routes.js'
+import {EventBus} from './util/event-bus';
 
 new Vue({
   el: "#app",
   data(){
     return{
       movies_served: [],
-      filterDay: moment().format('YYYY-MM-DD')
+      filterDay: moment()
     }
   },
   router: new VueRouter({routes}),
@@ -21,5 +22,11 @@ new Vue({
     axios.get("/api").then( (response)  =>  {
       this.movies_served = response.data
     })
+    EventBus.$on('filter-day', this.changeDay)
+  },
+  methods:{
+    changeDay(day){
+      this.filterDay = day
+    }
   }
 })
