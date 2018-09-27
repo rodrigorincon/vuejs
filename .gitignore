@@ -11,6 +11,11 @@ vuejs-cinema/npm-debug.log
 vuejs-cinema/.env
 vuejs-cinema/dist
 
+vuejs-calendar/node_modules/
+vuejs-calendar/npm-debug.log
+vuejs-calendar/.env
+vuejs-calendar/dist
+vuejs-calendar/tmp
 
 # Editor directories and files
 *.DS_Store
