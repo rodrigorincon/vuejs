@@ -1,5 +1,13 @@
 <template>
 	<div>
+		<div id="header">
+			<div>
+				<h1>Calendário VUE</h1>
+			</div>
+			<div>
+				<current-month></current-month>
+			</div>
+		</div>
 		<div id="day-bar">
 			<div>DOM</div>
 			<div>SEG</div>
@@ -19,16 +27,21 @@
 
 <script>
 	import CalendarDay from './CalendarDay.vue'
+	import CurrentMonth from './CurrentMonth.vue'
 
 	export default{
 	  data() {
 	    return{
-	    	currentDay: this.$moment(),
-	    	month: this.$moment().month(),
-	    	year: this.$moment().year()
+	    	currentDay: this.$moment()
 	  	}
 	  },
 	  computed:{
+	  	month(){
+	  		return this.$store.state.month
+	  	},
+	  	year(){
+	  		return this.$store.state.year
+	  	},
 	  	days(){
 	  		var days = []
 	  		var dayToAnalyze = this.$moment( new Date(this.year, this.month, 1) ) //first day of current month
@@ -63,7 +76,8 @@
 	  	}
 	  },
 	  components:{
-	  	CalendarDay
+	  	CalendarDay,
+	  	CurrentMonth
 	  }
 	}
 </script>
