@@ -19,7 +19,7 @@
 		</div>
 		<div id="calendar">
 			<div v-for="week in weeks" class="calendar-week">
-				<calendar-day v-for="day in week" :day="day"></calendar-day>
+				<calendar-day v-for="day in week" :day="day" :events="eventsByDate(day)" @newEvent="updateEvents"></calendar-day>
 			</div>
 		</div>
 		<event-form></event-form>
@@ -34,7 +34,18 @@
 	export default{
 	  data() {
 	    return{
-	    	currentDay: this.$moment()
+	    	currentDay: this.$moment(),
+	    	events: []
+	  	}
+	  },
+	  methods:{
+	  	eventsByDate(day){
+	  		return this.events.filter(event => {
+	  			return day.isSame(event.date, 'day')
+	  		})
+	  	},
+	  	updateEvents(event){
+	  		this.events.push(event)
 	  	}
 	  },
 	  computed:{
@@ -76,6 +87,13 @@
 	  		}
 	  		return weeks
 	  	}
+	  },
+	  created(){
+	  	this.$axios.get('/events').then(response =>{
+	  		if(response.data.length > 0){
+	  			this.events = response.data
+	  		}
+	  	})
 	  },
 	  components:{
 	  	CalendarDay,

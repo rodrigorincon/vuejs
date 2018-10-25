@@ -1,8 +1,9 @@
 <template>
 	<div id="event-form" :class="{active}" :style="{top: top, left: left}">
 		<h4>Criar Evento</h4>
+		<p>{{ formatDate() }}</p>
 		<div class="text">
-			<input type="text" v-model="fieldText" placeholder="Nome do evento">
+			<input v-focus type="text" v-model="fieldText" placeholder="Nome do evento" @keyup.enter="create">
 		</div>
 		<div class="buttons">
 			<button @click="create" :disabled="fieldText.length == 0">Criar</button>
@@ -13,6 +14,7 @@
 
 <script>
 	import {EventBus} from '../states/globalBus.js'
+	import {weekDayPT, monthPT} from '../utils/translateDates.js'
 
 	export default{
 		data(){
@@ -36,13 +38,29 @@
 				this.active = true
 			},
 			create(){
-				EventBus.$emit('addEvent', {description: this.fieldText, date: this.eventDay} )
-				this.closeForm()
+				if(this.fieldText.length > 0){
+					EventBus.$emit('addEvent', {description: this.fieldText, date: this.eventDay} )
+					this.$axios.post('/events', {description: this.fieldText, date: this.eventDay})
+					this.closeForm()
+				}
+			},
+			formatDate(){
+				var weekDay = weekDayPT(this.eventDay)
+				var monthName = monthPT(this.eventDay)
+				return weekDay+", "+this.eventDay.date()+" de "+monthName+" de "+this.eventDay.year()
+				//return this.eventDay.format('dddd, MMM Do')
 			}
 		},
 		created(){
 			EventBus.$on('openForm', this.openForm)
 			EventBus.$on('closeForm', this.closeForm)
+		},
+		directives: {
+			focus:{
+				update(el){
+					el.focus()
+				}
+			}
 		}
 	}
 </script>

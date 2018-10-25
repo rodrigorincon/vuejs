@@ -7,13 +7,17 @@
 </template>
 
 <script>
+	import {EventBus} from '../states/globalBus.js'
+
 	export default{
 		methods:{
 			dec(){
 				this.$store.commit("decreaseMonth")
+				EventBus.$emit('closeForm' )
 			},
 			inc(){
 				this.$store.commit("increaseMonth")
+				EventBus.$emit('closeForm' )
 			}
 		},
 		computed: {
