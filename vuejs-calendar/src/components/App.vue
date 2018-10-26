@@ -2,6 +2,7 @@
 	<div>
 		<div id="header">
 			<div>
+				<img src="../assets/logo.png">
 				<h1>Calendário VUE</h1>
 			</div>
 			<div>
